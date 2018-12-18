@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="QuoraDots" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qe5-8Z-6an">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bjp-MI-YD6" userLabel="container">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dot" translatesAutoresizingMaskIntoConstraints="NO" id="rZM-dd-gLd">
+                                        <rect key="frame" x="177.5" y="288.5" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="9EW-Be-Jkh"/>
+                                            <constraint firstAttribute="width" secondItem="rZM-dd-gLd" secondAttribute="height" multiplier="1:1" id="mtG-05-7uX"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dot" translatesAutoresizingMaskIntoConstraints="NO" id="6Uy-XS-xEy">
+                                        <rect key="frame" x="205.5" y="288.5" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="6Uy-XS-xEy" secondAttribute="height" multiplier="1:1" id="NDi-PU-m3L"/>
+                                            <constraint firstAttribute="height" constant="20" id="bid-sD-X8l"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dot" translatesAutoresizingMaskIntoConstraints="NO" id="m9d-Jc-sl0">
+                                        <rect key="frame" x="149" y="288.5" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="pjv-vh-wIe"/>
+                                            <constraint firstAttribute="width" secondItem="m9d-Jc-sl0" secondAttribute="height" multiplier="1:1" id="ugK-w8-Vzt"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="vLY-d1-UXl">
+                                        <rect key="frame" x="100" y="218.5" width="175" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Rve-Hh-Mjv"/>
+                                            <constraint firstAttribute="width" constant="175" id="bxU-f9-W4L"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="6Uy-XS-xEy" firstAttribute="centerY" secondItem="m9d-Jc-sl0" secondAttribute="centerY" id="Cpe-2l-z9t"/>
+                                    <constraint firstItem="rZM-dd-gLd" firstAttribute="centerX" secondItem="bjp-MI-YD6" secondAttribute="centerX" id="GN4-wO-Zx5"/>
+                                    <constraint firstItem="rZM-dd-gLd" firstAttribute="leading" secondItem="m9d-Jc-sl0" secondAttribute="trailing" constant="8.5" id="Lii-J9-wcn"/>
+                                    <constraint firstItem="6Uy-XS-xEy" firstAttribute="leading" secondItem="rZM-dd-gLd" secondAttribute="trailing" constant="8" id="O9c-GZ-tGm"/>
+                                    <constraint firstItem="vLY-d1-UXl" firstAttribute="centerX" secondItem="bjp-MI-YD6" secondAttribute="centerX" id="Oii-ym-R8k"/>
+                                    <constraint firstItem="rZM-dd-gLd" firstAttribute="top" secondItem="vLY-d1-UXl" secondAttribute="bottom" constant="20" id="XmM-Tr-AGR"/>
+                                    <constraint firstItem="vLY-d1-UXl" firstAttribute="centerY" secondItem="bjp-MI-YD6" secondAttribute="centerY" constant="-80" id="YcY-cK-BrT"/>
+                                    <constraint firstItem="rZM-dd-gLd" firstAttribute="centerY" secondItem="m9d-Jc-sl0" secondAttribute="centerY" id="z7v-Nd-Fbk"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="bjp-MI-YD6" firstAttribute="top" secondItem="cCN-5c-4FE" secondAttribute="top" id="8Y0-z7-LAR"/>
+                            <constraint firstItem="bjp-MI-YD6" firstAttribute="leading" secondItem="cCN-5c-4FE" secondAttribute="leading" id="Jk0-kG-tWc"/>
+                            <constraint firstItem="cCN-5c-4FE" firstAttribute="bottom" secondItem="bjp-MI-YD6" secondAttribute="bottom" id="tiw-Rm-noH"/>
+                            <constraint firstItem="cCN-5c-4FE" firstAttribute="trailing" secondItem="bjp-MI-YD6" secondAttribute="trailing" id="za1-1N-XUI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cCN-5c-4FE"/>
+                    </view>
+                    <connections>
+                        <outlet property="container" destination="bjp-MI-YD6" id="3vn-Pg-gTc"/>
+                        <outlet property="dotOne" destination="rZM-dd-gLd" id="zAD-H4-JV5"/>
+                        <outlet property="dotThree" destination="m9d-Jc-sl0" id="FGk-zB-LGH"/>
+                        <outlet property="dotTwo" destination="6Uy-XS-xEy" id="Jqd-ly-AfT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="dot" width="54" height="54"/>
+        <image name="logo" width="402" height="112"/>
+    </resources>
+</document>
