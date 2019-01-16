@@ -33,6 +33,14 @@ class LockScreenViewController: UIViewController {
   let blurView = UIVisualEffectView(effect: nil)
 
   var settingsController: SettingsViewController!
+  
+  
+  var startFrame: CGRect?
+  var previewView: UIView?
+  var previewAnimator: UIViewPropertyAnimator?
+  
+  let previewEffectView = IconEffectView(blur: .extraLight)
+  
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -95,7 +103,27 @@ class LockScreenViewController: UIViewController {
   
 }
 
-extension LockScreenViewController: WidgetsOwnerProtocol { }
+extension LockScreenViewController: WidgetsOwnerProtocol {
+  
+  func startPreview(for forView: UIView) {
+    previewView?.removeFromSuperview()
+    previewView = forView.snapshotView(afterScreenUpdates: false)
+    view.insertSubview(previewView!, aboveSubview: blurView)
+    previewView?.frame = forView.convert(forView.bounds, to: view)
+    startFrame = previewView?.frame
+    addEffectView(below: previewView!)
+  }
+  
+  func addEffectView(below forView: UIView) {
+    previewEffectView.removeFromSuperview()
+    previewEffectView.frame = forView.frame
+    
+    
+    forView.superview?.insertSubview(previewEffectView, belowSubview: forView)
+    
+  }
+  
+}
 
 extension LockScreenViewController: UITableViewDataSource {
 
