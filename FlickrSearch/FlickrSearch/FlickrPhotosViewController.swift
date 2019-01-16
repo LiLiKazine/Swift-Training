@@ -35,6 +35,30 @@ final class FlickrPhotosViewController: UICollectionViewController {
   private var searches = [FlickrSearchResults]()
   private let flickr = Flickr()
   private let itemsPerRow: CGFloat = 3
+  
+  var largePhotoIndexPath: IndexPath? {
+    didSet {
+      var indexPaths: [IndexPath] = []
+      if let largePhotoIndexPath = largePhotoIndexPath {
+        indexPaths.append(largePhotoIndexPath)
+      }
+      
+      if let oldValue = oldValue {
+        indexPaths.append(oldValue)
+      }
+      
+      collectionView.performBatchUpdates({
+        self.collectionView.reloadItems(at: indexPaths)
+      }) { _ in
+        if let largePhotoIndexPath = self.largePhotoIndexPath {
+          self.collectionView.scrollToItem(at: largePhotoIndexPath, at: .centeredVertically, animated: true)
+        }
+      }
+      
+    }
+  }
+  
+  
 }
 
 // MARK: - Private
@@ -42,6 +66,27 @@ private extension FlickrPhotosViewController {
   func photo(for indexPath: IndexPath) -> FlickrPhoto {
     return searches[indexPath.section].searchResults[indexPath.row]
   }
+  
+  func performLargeImageFetch(for indexPath: IndexPath, flickrPhoto: FlickrPhoto) {
+    guard let cell = collectionView.cellForItem(at: indexPath) as? FlickrPhotoCell else {
+      return
+    }
+    cell.activityIndicator.startAnimating()
+    flickrPhoto.loadLargeImage { [weak self] result in
+      guard let self = self else {
+        return
+      }
+      switch result {
+      case .results(let photo):
+        if indexPath == self.largePhotoIndexPath {
+          cell.imageView.image = photo.largeImage
+        }
+      case .error(_):
+        return
+      }
+    }
+  }
+  
 }
 
 // MARK: - UITextFieldDelegate
@@ -83,12 +128,28 @@ extension FlickrPhotosViewController {
   }
   
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
-                                                  for: indexPath) as! FlickrPhotoCell
+    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
+                                                        for: indexPath) as? FlickrPhotoCell else {
+                                                          preconditionFailure("Invalid cell type")
+    }
+    
     let flickrPhoto = photo(for: indexPath)
-    cell.backgroundColor = UIColor.white
+    cell.activityIndicator.stopAnimating()
+ 
+    guard indexPath == largePhotoIndexPath else {
+      cell.imageView.image = flickrPhoto.thumbnail
+      return cell
+    }
+    
+    guard flickrPhoto.largeImage == nil else {
+      cell.imageView.image = flickrPhoto.largeImage
+      return cell
+    }
+    
     cell.imageView.image = flickrPhoto.thumbnail
     
+    performLargeImageFetch(for: indexPath, flickrPhoto: flickrPhoto)
+ 
     return cell
   }
 }
@@ -97,6 +158,13 @@ extension FlickrPhotosViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
+    if indexPath == largePhotoIndexPath {
+      let flickrPhoto = photo(for: indexPath)
+      var size = collectionView.bounds.size
+      size.height -= (sectionInsets.top + sectionInsets.bottom)
+      size.width -= (sectionInsets.left + sectionInsets.right)
+      return flickrPhoto.sizeToFillWidth(of: size)
+    }
     let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
     let availableWidth = view.frame.width - paddingSpace
     let widthPerItem = availableWidth / itemsPerRow
@@ -114,5 +182,31 @@ extension FlickrPhotosViewController: UICollectionViewDelegateFlowLayout {
                       layout collectionViewLayout: UICollectionViewLayout,
                       minimumLineSpacingForSectionAt section: Int) -> CGFloat {
     return sectionInsets.left
+  }
+  
+  override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    switch kind {
+    case UICollectionView.elementKindSectionHeader:
+      guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "\(FlickrPhotoHeaderView.self)", for: indexPath) as? FlickrPhotoHeaderView else {
+        fatalError("Invalid view type")
+      }
+      let searchTerm = searches[indexPath.section].searchTerm
+      headerView.label.text = searchTerm
+      return headerView
+    default:
+      assert(false, "Invalid element type")
+    }
+  }
+}
+
+//UICollectionViewDelegate
+extension FlickrPhotosViewController {
+  override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+    if largePhotoIndexPath == indexPath {
+      largePhotoIndexPath = nil
+    } else {
+      largePhotoIndexPath = indexPath
+    }
+    return false
   }
 }
