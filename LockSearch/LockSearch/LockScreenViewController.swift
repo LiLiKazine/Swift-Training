@@ -54,6 +54,9 @@ class LockScreenViewController: UIViewController {
 
     tableView.estimatedRowHeight = 130.0
     tableView.rowHeight = UITableViewAutomaticDimension
+    
+    let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissMenu))
+    previewEffectView.addGestureRecognizer(dismissTap)
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -112,6 +115,12 @@ extension LockScreenViewController: WidgetsOwnerProtocol {
     previewView?.frame = forView.convert(forView.bounds, to: view)
     startFrame = previewView?.frame
     addEffectView(below: previewView!)
+    previewAnimator = AnimatorFactory.grow(view: previewEffectView, blurView: blurView)
+    
+  }
+  
+  func updatePreview(percent: CGFloat) {
+    previewAnimator?.fractionComplete = max(0.1, min(0.99, percent))
   }
   
   func addEffectView(below forView: UIView) {
@@ -120,6 +129,47 @@ extension LockScreenViewController: WidgetsOwnerProtocol {
     
     
     forView.superview?.insertSubview(previewEffectView, belowSubview: forView)
+    
+  }
+  
+  func cancelPreview() {
+    if let previewAnimator = previewAnimator {
+      previewAnimator.isReversed = true
+      previewAnimator.startAnimation()
+      
+      previewAnimator.addCompletion { position in
+        switch position {
+        case .start:
+          self.previewView?.removeFromSuperview()
+          self.previewEffectView.removeFromSuperview()
+        default:
+          break
+        }
+      }
+    }
+  }
+  
+  func finishPreview() {
+    previewAnimator?.stopAnimation(false)
+    previewAnimator?.finishAnimation(at: .end)
+    previewAnimator = nil
+    AnimatorFactory.complete(view: previewEffectView).startAnimation()
+    
+    blurView.effect = UIBlurEffect(style: .dark)
+    blurView.isUserInteractionEnabled = true
+    blurView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissMenu)))
+  }
+  
+  @objc func dismissMenu() {
+    let animator = AnimatorFactory.reset(frame: startFrame!, view: previewEffectView, blurView: blurView)
+    animator.addCompletion { [weak self] position in
+      if position == .end {
+        self?.previewView?.removeFromSuperview()
+        self?.previewEffectView.removeFromSuperview()
+        self?.blurView.isUserInteractionEnabled = false
+      }
+    }
+    animator.startAnimation()
     
   }
   
