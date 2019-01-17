@@ -41,6 +41,36 @@ class LockScreenViewController: UIViewController {
   
   let previewEffectView = IconEffectView(blur: .extraLight)
   
+  let presentTransition = PresentTransition()
+  
+  var isDragging = false
+  var isPresentingSettings = false
+  
+  var touchesStartPointY: CGFloat?
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    guard presentTransition.wantsInteractiveStart == false, presentTransition.animator != nil else {
+      return
+    }
+    touchesStartPointY = touches.first!.location(in: view).y
+    presentTransition.interruptTransition()
+  }
+  
+  override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    guard let startY = touchesStartPointY else { return }
+    let currentPoint = touches.first!.location(in: view).y
+    if currentPoint < startY - 40 {
+      touchesStartPointY = nil
+      presentTransition.animator?.addCompletion({ _ in
+        self.blurView.effect = nil
+      })
+      presentTransition.cancel()
+    } else if currentPoint > startY + 40 {
+      touchesStartPointY = nil
+      presentTransition.finish()
+    }
+  }
+  
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -86,6 +116,12 @@ class LockScreenViewController: UIViewController {
   @IBAction func presentSettings(_ sender: Any? = nil) {
     //present the view controller
     settingsController = storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
+    settingsController.transitioningDelegate = self
+    presentTransition.auxAnimations = blurAnimations(true)
+    presentTransition.auxAnimationsCancel = blurAnimations(false)
+    settingsController.didDismiss = { [unowned self] in
+      self.toggleBlur(false)
+    }
     present(settingsController, animated: true, completion: nil)
   }
   
@@ -163,11 +199,11 @@ extension LockScreenViewController: WidgetsOwnerProtocol {
   @objc func dismissMenu() {
     let animator = AnimatorFactory.reset(frame: startFrame!, view: previewEffectView, blurView: blurView)
     animator.addCompletion { [weak self] position in
-      if position == .end {
+//      if position == .end {
         self?.previewView?.removeFromSuperview()
         self?.previewEffectView.removeFromSuperview()
         self?.blurView.isUserInteractionEnabled = false
-      }
+//      }
     }
     animator.startAnimation()
     
@@ -185,6 +221,7 @@ extension LockScreenViewController: UITableViewDataSource {
     if indexPath.row == 1 {
       let cell = tableView.dequeueReusableCell(withIdentifier: "Footer") as! FooterCell
       cell.didPressEdit = {[unowned self] in
+        self.presentTransition.wantsInteractiveStart = false
         self.presentSettings()
       }
       return cell
@@ -217,5 +254,56 @@ extension LockScreenViewController: UISearchBarDelegate {
       searchBar.text = nil
     }
   }
+  
+}
+
+extension LockScreenViewController: UIViewControllerTransitioningDelegate {
+  
+  func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    return presentTransition
+  }
+
+  func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    return presentTransition
+  }
+    
+}
+
+extension LockScreenViewController: UIScrollViewDelegate {
+  
+  func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    isDragging = true
+  }
+
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    guard isDragging else {
+      return
+    }
+
+    if !isPresentingSettings && scrollView.contentOffset.y < -30 {
+      isPresentingSettings = true
+      presentTransition.wantsInteractiveStart = true
+      presentSettings()
+      return
+    }
+
+    if isPresentingSettings {
+      let progress = max(0.0, min(1.0, ((-scrollView.contentOffset.y) - 30) / 90.0))
+      presentTransition.update(progress)
+    }
+  }
+
+  func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    let progress = max(0.0, min(1.0, ((-scrollView.contentOffset.y) - 30) / 90.0))
+    if progress > 0.5 {
+      presentTransition.finish()
+    } else {
+      presentTransition.cancel()
+    }
+    isDragging = false
+    isPresentingSettings = false
+
+  }
+  
   
 }
