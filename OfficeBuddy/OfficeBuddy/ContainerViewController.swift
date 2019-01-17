@@ -67,6 +67,8 @@ class ContainerViewController: UIViewController {
     
     let panGesture = UIPanGestureRecognizer(target:self, action:#selector(ContainerViewController.handleGesture(_:)))
     view.addGestureRecognizer(panGesture)
+    
+    setMenu(toPercent: 0.0)
   }
   
   @objc func handleGesture(_ recognizer: UIPanGestureRecognizer) {
@@ -83,10 +85,12 @@ class ContainerViewController: UIViewController {
       
     case .changed:
       setMenu(toPercent: isOpening ? progress: (1.0 - progress))
-      
+      menuViewController.view.layer.shouldRasterize = true
+        menuViewController.view.layer.rasterizationScale = UIScreen.main.scale
     case .ended: fallthrough
     case .cancelled: fallthrough
     case .failed:
+        menuViewController.view.layer.shouldRasterize = false
       
       var targetProgress: CGFloat
       if (isOpening) {
@@ -126,6 +130,18 @@ class ContainerViewController: UIViewController {
     centerViewController.view.frame.origin.x = menuWidth * CGFloat(percent)
 //    menuViewController.view.frame.origin.x = menuWidth * CGFloat(percent) - menuWidth
     menuViewController.view.layer.transform = menuTransform(percent: percent)
+    menuViewController.view.alpha = CGFloat(max(0.2, percent))
+    
+    let centerVC = centerViewController.viewControllers.first as? CenterViewController
+    
+    if let btn = centerVC?.menuButton {
+        let layer = btn.imageView.layer
+        var identity = CATransform3DIdentity
+        identity.m34 = -1.0/1000
+        let angle = percent * .pi
+        let rotation = CATransform3DRotate(identity, angle, 1.0, 1.0, 0.0)
+        layer.transform = rotation
+    }
   }
     
     func menuTransform(percent: CGFloat) -> CATransform3D {
