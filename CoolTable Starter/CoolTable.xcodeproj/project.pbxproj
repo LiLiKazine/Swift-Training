@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09EB3F912213AF76005DA314 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EB3F902213AF76005DA314 /* CustomHeader.swift */; };
+		09EB3F932213AF8E005DA314 /* CustomHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09EB3F922213AF8E005DA314 /* CustomHeader.xib */; };
 		F50090CE21A1DA2700BB77E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50090CD21A1DA2700BB77E9 /* AppDelegate.swift */; };
 		F50090D021A1DA2700BB77E9 /* CoolTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50090CF21A1DA2700BB77E9 /* CoolTableViewController.swift */; };
 		F50090D321A1DA2700BB77E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F50090D121A1DA2700BB77E9 /* Main.storyboard */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		09EB3F902213AF76005DA314 /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
+		09EB3F922213AF8E005DA314 /* CustomHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomHeader.xib; sourceTree = "<group>"; };
 		F50090CA21A1DA2700BB77E9 /* CoolTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoolTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F50090CD21A1DA2700BB77E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F50090CF21A1DA2700BB77E9 /* CoolTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoolTableViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +72,8 @@
 				F50090D921A1DA2800BB77E9 /* Info.plist */,
 				F50090D421A1DA2800BB77E9 /* Assets.xcassets */,
 				F50090E921A1FF3700BB77E9 /* Extensions.swift */,
+				09EB3F902213AF76005DA314 /* CustomHeader.swift */,
+				09EB3F922213AF8E005DA314 /* CustomHeader.xib */,
 			);
 			path = CoolTable;
 			sourceTree = "<group>";
@@ -131,6 +137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F50090D821A1DA2800BB77E9 /* LaunchScreen.storyboard in Resources */,
+				09EB3F932213AF8E005DA314 /* CustomHeader.xib in Resources */,
 				F50090D521A1DA2800BB77E9 /* Assets.xcassets in Resources */,
 				F50090D321A1DA2700BB77E9 /* Main.storyboard in Resources */,
 			);
@@ -147,6 +154,7 @@
 				F50090D021A1DA2700BB77E9 /* CoolTableViewController.swift in Sources */,
 				F50090CE21A1DA2700BB77E9 /* AppDelegate.swift in Sources */,
 				F50090EA21A1FF3700BB77E9 /* Extensions.swift in Sources */,
+				09EB3F912213AF76005DA314 /* CustomHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

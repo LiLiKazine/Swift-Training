@@ -63,4 +63,14 @@ class CoolTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     return section == 0 ? "Things We'll Learn" : "Things Already Covered"
   }
+  
+  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    guard let customHeaderView = CustomHeader.loadViewFromNib() else { return nil }
+    customHeaderView.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
+    if section == 1 {
+      customHeaderView.lightColor = UIColor(red: 147/255.0, green: 105/255.0, blue: 216/255.0, alpha: 1)
+      customHeaderView.darkColor = UIColor(red: 72/255.0, green: 22/255.0, blue: 137/255.0, alpha: 1)
+    }
+    return customHeaderView
+  }
 }

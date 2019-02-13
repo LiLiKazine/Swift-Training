@@ -28,52 +28,49 @@
 
 import UIKit
 
-extension CGContext {
-  func drawLinearGradient(rect: CGRect, startColor: UIColor, endColor: UIColor) {
-    let gradient = CGGradient(colorsSpace: nil, colors: [startColor.cgColor, endColor.cgColor] as CFArray, locations: [0, 1])!
-    
-    let startPoint = CGPoint(x: rect.midX, y: rect.minY)
-    let endPoint = CGPoint(x: rect.midX, y: rect.maxY)
-    
-    saveGState()
-    addRect(rect)
-    clip()
-    drawLinearGradient(gradient, start: startPoint, end: endPoint, options: [])
-    
-    restoreGState()
-  }
+class CustomHeader: UIView {
   
-  func draw1PxStroke(startPoint: CGPoint, endPoint: CGPoint, color: UIColor) {
-    saveGState()
-    setLineCap(.square)
-    setStrokeColor(color.cgColor)
-    setLineWidth(1)
-    move(to: startPoint+0.5)
-    addLine(to: endPoint)
-    strokePath()
-    restoreGState()
-  }
+  @IBOutlet public var titleLabel: UILabel!
   
-  func drawGlossAndGradient(rect: CGRect, startColor: UIColor, endColor: UIColor) {
-    drawLinearGradient(rect: rect, startColor: startColor, endColor: endColor)
-    let glossColor1 = UIColor.white.withAlphaComponent(0.35)
-    let glossCOlor2 = UIColor.white.withAlphaComponent(0.1)
-    var topHalf = rect
-    topHalf.size.height /= 2
-    drawLinearGradient(rect: topHalf, startColor: glossColor1, endColor: glossCOlor2)
-  }
+  @IBInspectable var coloredBoxHeight: CGFloat = 40
   
-}
-
-extension CGRect {
-  func rectFor1PxStroke() -> CGRect {
-    return CGRect(x: origin.x + 0.5, y: origin.y + 0.5, width: size.width - 1, height: size.height - 1)
+  var lightColor = UIColor(red: 105/255.0, green: 179/255.0, blue: 216/255.0, alpha: 1)
+  var darkColor = UIColor(red: 21/255.0, green: 92/255.0, blue: 136/255.0, alpha: 1)
+  
+  
+  
+  class func loadViewFromNib() -> CustomHeader? {
+    
+    let bundle = Bundle.main
+    let nib = UINib(nibName: "CustomHeader", bundle: bundle)
+    guard let view = nib.instantiate(withOwner: CustomHeader(), options: nil).first as? CustomHeader else {
+      return nil
+    }
+    return view
   }
-}
 
+    // Only override draw() if you perform custom drawing.
+    // An empty implementation adversely affects performance during animation.
+    override func draw(_ rect: CGRect) {
 
-extension CGPoint {
-  static func +(left: CGPoint, right: CGFloat) -> CGPoint {
-    return CGPoint(x: left.x + right, y: left.y + right)
+      var coloredBoxRect = bounds
+      coloredBoxRect.size.height = coloredBoxHeight
+      
+      var paperRect = bounds
+      paperRect.origin.y += coloredBoxHeight
+      paperRect.size.height = bounds.height - coloredBoxHeight
+      
+      let context = UIGraphicsGetCurrentContext()!
+      let shadowCOlor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.5)
+      context.saveGState()
+      context.setShadow(offset: CGSize(width: 0, height: 2), blur: 3.0, color: shadowCOlor.cgColor)
+      context.setFillColor(lightColor.cgColor)
+      context.fill(coloredBoxRect)
+      context.restoreGState()
+      context.drawGlossAndGradient(rect: coloredBoxRect, startColor: lightColor, endColor: darkColor)
+      context.setStrokeColor(darkColor.cgColor)
+      context.setLineWidth(1)
+      context.stroke(coloredBoxRect.rectFor1PxStroke())
   }
+
 }
