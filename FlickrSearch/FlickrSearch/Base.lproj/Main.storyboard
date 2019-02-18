@@ -80,7 +80,7 @@
                     <navigationItem key="navigationItem" id="JJu-9r-C0y">
                         <nil key="title"/>
                         <textField key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" id="eX9-wA-pbn">
-                            <rect key="frame" x="20.5" y="7" width="334" height="30"/>
+                            <rect key="frame" x="22" y="7" width="301" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -89,6 +89,11 @@
                                 <outlet property="delegate" destination="uSH-PT-Kpi" id="6Up-yf-5Ab"/>
                             </connections>
                         </textField>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="P96-Rn-Yzc">
+                            <connections>
+                                <action selector="shareActionWithSender:" destination="uSH-PT-Kpi" id="P1t-WV-BKO"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h59-RB-qOo" userLabel="First Responder" sceneMemberID="firstResponder"/>
