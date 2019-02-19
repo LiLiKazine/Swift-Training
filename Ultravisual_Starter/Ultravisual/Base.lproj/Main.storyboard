@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Gi5-eq-qj2">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Inspirations View Controller-->
+        <scene sceneID="GAb-ki-uCL">
+            <objects>
+                <collectionViewController id="Gi5-eq-qj2" customClass="InspirationsViewController" customModule="Ultravisual" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="tNe-IU-296">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <collectionViewLayout key="collectionViewLayout" id="6Iw-Cg-sZ6" customClass="UltravisualLayout" customModule="Ultravisual" customModuleProvider="target"/>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="InspirationCell" id="n3U-hs-Bjw" customClass="InspirationCell" customModule="Ultravisual" customModuleProvider="target">
+                                <rect key="frame" x="87.5" y="0.0" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EBt-Ju-Wqf">
+                                            <rect key="frame" x="0.0" y="-40" width="200" height="280"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="280" id="lDA-7Y-0nc"/>
+                                            </constraints>
+                                        </imageView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GRt-xQ-OtD">
+                                            <rect key="frame" x="0.0" y="-40" width="200" height="280"/>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inspiration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vL-Fb-g0N">
+                                            <rect key="frame" x="0.0" y="78" width="200" height="44"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="gxG-8o-roT"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="38"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time, Room" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYl-NE-3Jx">
+                                            <rect key="frame" x="0.0" y="122" width="200" height="24"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speaker" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qsk-jy-4qY">
+                                            <rect key="frame" x="8" y="146" width="184" height="24"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="AYl-NE-3Jx" secondAttribute="trailing" id="0NC-0S-ZcD"/>
+                                    <constraint firstAttribute="trailing" secondItem="4vL-Fb-g0N" secondAttribute="trailing" id="1BG-h3-21r"/>
+                                    <constraint firstItem="Qsk-jy-4qY" firstAttribute="leading" secondItem="n3U-hs-Bjw" secondAttribute="leadingMargin" id="1Gm-oP-31D"/>
+                                    <constraint firstItem="AYl-NE-3Jx" firstAttribute="leading" secondItem="n3U-hs-Bjw" secondAttribute="leading" id="1bK-0g-21R"/>
+                                    <constraint firstAttribute="trailing" secondItem="EBt-Ju-Wqf" secondAttribute="trailing" id="3sC-tH-opV"/>
+                                    <constraint firstItem="EBt-Ju-Wqf" firstAttribute="centerY" secondItem="n3U-hs-Bjw" secondAttribute="centerY" id="EPC-n1-IuZ"/>
+                                    <constraint firstItem="Qsk-jy-4qY" firstAttribute="top" secondItem="AYl-NE-3Jx" secondAttribute="bottom" id="GF7-zT-9rt"/>
+                                    <constraint firstItem="GRt-xQ-OtD" firstAttribute="trailing" secondItem="EBt-Ju-Wqf" secondAttribute="trailing" id="SZR-QW-gXu"/>
+                                    <constraint firstItem="GRt-xQ-OtD" firstAttribute="top" secondItem="EBt-Ju-Wqf" secondAttribute="top" id="YNy-SB-sND"/>
+                                    <constraint firstItem="GRt-xQ-OtD" firstAttribute="leading" secondItem="EBt-Ju-Wqf" secondAttribute="leading" id="Z0j-BB-FYB"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="Qsk-jy-4qY" secondAttribute="trailing" id="aEc-ST-RpT"/>
+                                    <constraint firstItem="AYl-NE-3Jx" firstAttribute="top" secondItem="4vL-Fb-g0N" secondAttribute="bottom" id="ewf-WE-0Ow"/>
+                                    <constraint firstItem="EBt-Ju-Wqf" firstAttribute="leading" secondItem="n3U-hs-Bjw" secondAttribute="leading" id="oei-CN-8Ur"/>
+                                    <constraint firstItem="GRt-xQ-OtD" firstAttribute="bottom" secondItem="EBt-Ju-Wqf" secondAttribute="bottom" id="pHy-I8-7Vg"/>
+                                    <constraint firstItem="4vL-Fb-g0N" firstAttribute="centerY" secondItem="n3U-hs-Bjw" secondAttribute="centerY" id="q2o-bu-J2d"/>
+                                    <constraint firstItem="4vL-Fb-g0N" firstAttribute="leading" secondItem="n3U-hs-Bjw" secondAttribute="leading" id="rGB-dA-fYP"/>
+                                </constraints>
+                                <size key="customSize" width="200" height="200"/>
+                                <connections>
+                                    <outlet property="imageCoverView" destination="GRt-xQ-OtD" id="DBD-Xa-maa"/>
+                                    <outlet property="imageView" destination="EBt-Ju-Wqf" id="gdi-BE-AR6"/>
+                                    <outlet property="speakerLabel" destination="Qsk-jy-4qY" id="9WO-eH-dQk"/>
+                                    <outlet property="timeAndRoomLabel" destination="AYl-NE-3Jx" id="mPs-7J-EEP"/>
+                                    <outlet property="titleLabel" destination="4vL-Fb-g0N" id="9qj-Yi-9bh"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="Gi5-eq-qj2" id="3ch-Hp-kRG"/>
+                            <outlet property="delegate" destination="Gi5-eq-qj2" id="xW1-B0-dmE"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K9E-Uw-G83" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="544" y="432"/>
+        </scene>
+    </scenes>
+</document>
