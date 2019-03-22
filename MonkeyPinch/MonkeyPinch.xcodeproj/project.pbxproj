@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		091F68C32228C62A009405C6 /* RBTreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091F68C22228C62A009405C6 /* RBTreeTests.swift */; };
 		09C779852223D10000200859 /* TickleGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C779842223D10000200859 /* TickleGestureRecognizer.swift */; };
 		AF7EC11C1EE4A4990076F95A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7EC11B1EE4A4990076F95A /* AppDelegate.swift */; };
 		AF7EC11E1EE4A4990076F95A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7EC11D1EE4A4990076F95A /* ViewController.swift */; };
@@ -17,7 +18,20 @@
 		AF7EC1321EE4B1230076F95A /* hehehe1.caf in Resources */ = {isa = PBXBuildFile; fileRef = AF7EC1301EE4B1230076F95A /* hehehe1.caf */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		091F68C52228C62A009405C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF7EC1101EE4A4990076F95A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AF7EC1171EE4A4990076F95A;
+			remoteInfo = MonkeyPinch;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		091F68C02228C62A009405C6 /* MonkeyPinchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MonkeyPinchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		091F68C22228C62A009405C6 /* RBTreeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBTreeTests.swift; sourceTree = "<group>"; };
+		091F68C42228C62A009405C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09C779842223D10000200859 /* TickleGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickleGestureRecognizer.swift; sourceTree = "<group>"; };
 		09C779862223D1E100200859 /* MonkeyPinch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MonkeyPinch-Bridging-Header.h"; sourceTree = "<group>"; };
 		AF7EC1181EE4A4990076F95A /* MonkeyPinch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MonkeyPinch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -32,6 +46,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		091F68BD2228C62A009405C6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AF7EC1151EE4A4990076F95A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -42,10 +63,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		091F68C12228C62A009405C6 /* MonkeyPinchTests */ = {
+			isa = PBXGroup;
+			children = (
+				091F68C22228C62A009405C6 /* RBTreeTests.swift */,
+				091F68C42228C62A009405C6 /* Info.plist */,
+			);
+			path = MonkeyPinchTests;
+			sourceTree = "<group>";
+		};
 		AF7EC10F1EE4A4990076F95A = {
 			isa = PBXGroup;
 			children = (
 				AF7EC11A1EE4A4990076F95A /* MonkeyPinch */,
+				091F68C12228C62A009405C6 /* MonkeyPinchTests */,
 				AF7EC1191EE4A4990076F95A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				AF7EC1181EE4A4990076F95A /* MonkeyPinch.app */,
+				091F68C02228C62A009405C6 /* MonkeyPinchTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -86,6 +118,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		091F68BF2228C62A009405C6 /* MonkeyPinchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 091F68C92228C62A009405C6 /* Build configuration list for PBXNativeTarget "MonkeyPinchTests" */;
+			buildPhases = (
+				091F68BC2228C62A009405C6 /* Sources */,
+				091F68BD2228C62A009405C6 /* Frameworks */,
+				091F68BE2228C62A009405C6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				091F68C62228C62A009405C6 /* PBXTargetDependency */,
+			);
+			name = MonkeyPinchTests;
+			productName = MonkeyPinchTests;
+			productReference = 091F68C02228C62A009405C6 /* MonkeyPinchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		AF7EC1171EE4A4990076F95A /* MonkeyPinch */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AF7EC12A1EE4A4990076F95A /* Build configuration list for PBXNativeTarget "MonkeyPinch" */;
@@ -109,10 +159,16 @@
 		AF7EC1101EE4A4990076F95A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Ray Wenderlich";
 				TargetAttributes = {
+					091F68BF2228C62A009405C6 = {
+						CreatedOnToolsVersion = 10.1;
+						DevelopmentTeam = TUBC4SD5QM;
+						ProvisioningStyle = Automatic;
+						TestTargetID = AF7EC1171EE4A4990076F95A;
+					};
 					AF7EC1171EE4A4990076F95A = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = TUBC4SD5QM;
@@ -135,11 +191,19 @@
 			projectRoot = "";
 			targets = (
 				AF7EC1171EE4A4990076F95A /* MonkeyPinch */,
+				091F68BF2228C62A009405C6 /* MonkeyPinchTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		091F68BE2228C62A009405C6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AF7EC1161EE4A4990076F95A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -155,6 +219,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		091F68BC2228C62A009405C6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				091F68C32228C62A009405C6 /* RBTreeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AF7EC1141EE4A4990076F95A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -166,6 +238,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		091F68C62228C62A009405C6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AF7EC1171EE4A4990076F95A /* MonkeyPinch */;
+			targetProxy = 091F68C52228C62A009405C6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		AF7EC11F1EE4A4990076F95A /* Main.storyboard */ = {
@@ -187,6 +267,57 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		091F68C72228C62A009405C6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TUBC4SD5QM;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = MonkeyPinchTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lilikazine.MonkeyPinchTests.MonkeyPinchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MonkeyPinch.app/MonkeyPinch";
+			};
+			name = Debug;
+		};
+		091F68C82228C62A009405C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TUBC4SD5QM;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = MonkeyPinchTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lilikazine.MonkeyPinchTests.MonkeyPinchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MonkeyPinch.app/MonkeyPinch";
+			};
+			name = Release;
+		};
 		AF7EC1281EE4A4990076F95A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -334,6 +465,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		091F68C92228C62A009405C6 /* Build configuration list for PBXNativeTarget "MonkeyPinchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				091F68C72228C62A009405C6 /* Debug */,
+				091F68C82228C62A009405C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AF7EC1131EE4A4990076F95A /* Build configuration list for PBXProject "MonkeyPinch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -70,13 +70,9 @@ extension EmojiViewController {
   override func collectionView(_ collectionView: UICollectionView,
       cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmojiCell", for: indexPath)
-    
+
     if let cell = cell as? EmojiViewCell {
       cell.updateAppearanceFor(.none, animated: false)
-      
-      if let emojiRating = dataStore.loadEmojiRating(at: indexPath.item) {
-        cell.updateAppearanceFor(emojiRating, animated: true)
-      }
     }
     return cell
   }
@@ -146,3 +142,4 @@ extension EmojiViewController: UIPreviewInteractionDelegate {
     }
   }
 }
+
