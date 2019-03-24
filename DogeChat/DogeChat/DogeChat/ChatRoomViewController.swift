@@ -31,6 +31,9 @@
 import UIKit
 
 class ChatRoomViewController: UIViewController {
+    
+    let chatRoom = ChatRoom()
+    
   let tableView = UITableView()
   let messageInputBar = MessageInputView()
   
@@ -40,11 +43,15 @@ class ChatRoomViewController: UIViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    
+    chatRoom.delegate = self
+    chatRoom.setupNetworkCommunication()
+    chatRoom.joinChat(username: username)
+
   }
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
+    chatRoom.stopChatSession()
 
   }
 }
@@ -52,7 +59,12 @@ class ChatRoomViewController: UIViewController {
 //MARK - Message Input Bar
 extension ChatRoomViewController: MessageInputDelegate {
   func sendWasTapped(message: String) {
-    
+    chatRoom.sendMessage(message: message)
   }
 }
 
+extension ChatRoomViewController: ChatRoomDelegate {
+    func receivedMessage(message: Message) {
+        insertNewMessageCell(message)
+    }
+}
